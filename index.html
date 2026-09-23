@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Consumer App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>API Consumer App</h1>
+
+      <div class="controls">
+        <label for="api-selector">Método:</label>
+
+        <select id="api-selector">
+          <option value="fetch">Utiliza Fetch</option>
+          <option value="axios">Utiliza Axios</option>
+        </select>
+
+        <label for="search-input" class="sr-only">Buscar</label>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Buscar posts...">
+
+        <button id="fetch-button" type="button">
+          Obtener Datos
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <p id="loading" class="hidden">Cargando datos...</p>
+
+      <p id="error" class="error hidden" role="alert"></p>
+
+      <section
+        id="results"
+        aria-live="polite"
+        aria-label="Resultados"
+      ></section>
+
+      <nav
+        id="pagination"
+        class="pagination"
+        aria-label="Paginación"
+      ></nav>
+    </main>
+  </div>
+
+  <!-- Axios mediante CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
