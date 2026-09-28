@@ -3,7 +3,6 @@ const API_URL = "https://jsonplaceholder.typicode.com/posts";
 let currentPage = 1;
 const itemsPerPage = 10;
 
-// Referencias a los elementos del DOM
 const apiSelector = document.getElementById("api-selector");
 const searchInput = document.getElementById("search-input");
 const fetchButton = document.getElementById("fetch-button");
@@ -12,13 +11,11 @@ const errorElement = document.getElementById("error");
 const resultsContainer = document.getElementById("results");
 const paginationContainer = document.getElementById("pagination");
 
-// Event listener del botón
 fetchButton.addEventListener("click", () => {
   currentPage = 1;
   fetchData();
 });
 
-// También permite buscar pulsando Enter
 searchInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     currentPage = 1;
@@ -26,37 +23,31 @@ searchInput.addEventListener("keydown", (event) => {
   }
 });
 
-// Mostrar indicador de carga
 function showLoading() {
   loadingElement.classList.remove("hidden");
 }
 
-// Ocultar indicador de carga
 function hideLoading() {
   loadingElement.classList.add("hidden");
 }
 
-// Mostrar error
 function showError(message) {
   errorElement.textContent = message;
   errorElement.classList.remove("hidden");
 }
 
-// Ocultar error
 function hideError() {
   errorElement.classList.add("hidden");
 }
 
-// Función principal
 async function fetchData() {
   const searchTerm = searchInput.value.trim();
   const useAxios = apiSelector.value === "axios";
 
   showLoading();
   hideError();
-//Limpiar resultados anteriores
   resultsContainer.innerHTML = "";
-//Limpiar paginación  
+
   paginationContainer.innerHTML = "";
 
   try {
@@ -73,7 +64,6 @@ async function fetchData() {
   }
 }
 
-// Mostrar resultados
 function displayResults(items, totalItems) {
   resultsContainer.innerHTML = "";
 
@@ -106,7 +96,6 @@ function displayResults(items, totalItems) {
   setupPagination(totalItems);
 }
 
-// Crear paginación
 function setupPagination(totalItems) {
   paginationContainer.innerHTML = "";
 
@@ -137,7 +126,6 @@ function setupPagination(totalItems) {
   }
 }
 
-// Petición utilizando Fetch API
 async function fetchDataWithFetch(searchTerm) {
   const params = new URLSearchParams({
     _page: currentPage,
@@ -162,7 +150,6 @@ async function fetchDataWithFetch(searchTerm) {
   displayResults(data, totalItems);
 }
 
-// Petición utilizando Axios
 async function fetchDataWithAxios(searchTerm) {
   const params = {
     _page: currentPage,
